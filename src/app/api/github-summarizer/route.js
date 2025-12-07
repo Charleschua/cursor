@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
 import { supabase } from "../../../lib/supabaseClient";
+import { summarizeReadme } from "./chain";
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    const apiKey = body?.key?.trim();
+    
+    // Get API key from header (preferred) or body
+    const headerApiKey = request.headers.get("x-api-key")?.trim();
+    const bodyApiKey = body?.key?.trim();
+    const apiKey = headerApiKey || bodyApiKey;
     const repoUrl = body?.repo?.trim();
 
     // Step 1: Validate API key
@@ -74,7 +79,10 @@ export async function POST(request) {
       }
     }
 
-    // Step 4: Return a summary
+    // Step 4: Summarize with LangChain
+    const aiSummary = await summarizeReadme(readmeContent);
+
+    // Step 5: Return a summary
     const summary = {
       name: repoData.name,
       fullName: repoData.full_name,
@@ -91,6 +99,7 @@ export async function POST(request) {
       defaultBranch: repoData.default_branch,
       license: repoData.license?.name || null,
       readme: readmeContent,
+      aiSummary,
     };
 
     return NextResponse.json({ success: true, summary }, { status: 200 });
