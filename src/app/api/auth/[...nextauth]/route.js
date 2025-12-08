@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
+// Force Node.js runtime (not Edge)
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 // Debug: Log env var status (not values for security)
 console.log("NEXTAUTH_SECRET exists:", !!process.env.NEXTAUTH_SECRET);
 console.log("GOOGLE_CLIENT_ID exists:", !!process.env.GOOGLE_CLIENT_ID);
