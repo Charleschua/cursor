@@ -5,10 +5,13 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": ""
+          "value": "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         }
       ]
     }
   ]
 }
-

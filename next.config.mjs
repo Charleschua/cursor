@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactCompiler: true,
+  // Disabled React Compiler - may cause CSP eval issues in production
+  // reactCompiler: true,
   async headers() {
     return [
       {
