@@ -23,9 +23,8 @@ const handler = NextAuth({
       return token;
     },
   },
-  pages: {
-    signIn: "/login", // Optional: custom sign-in page
-  },
+  // Using default NextAuth sign-in page
+  debug: process.env.NODE_ENV === "development",
 });
 
 export { handler as GET, handler as POST };
