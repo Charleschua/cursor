@@ -55,14 +55,14 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-muted-foreground text-lg">Choose the plan that fits your needs</p>
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">Simple, Transparent Pricing</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground px-4">Choose the plan that fits your needs</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <Card
               key={index}
@@ -73,9 +73,17 @@ export function Pricing() {
               }`}
             >
               {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-primary text-primary-foreground text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
                     MOST POPULAR
+                  </span>
+                </div>
+              )}
+              
+              {(plan.name === "Pro" || plan.name === "Enterprise") && (
+                <div className="absolute top-3 right-3 z-10">
+                  <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">
+                    Coming Soon
                   </span>
                 </div>
               )}

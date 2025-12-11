@@ -12,7 +12,7 @@ export default function PlaygroundPage() {
   const [error, setError] = useState("");
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const notify = (message, variant = "success") => {
     setToastVariant(variant);
@@ -34,27 +34,27 @@ export default function PlaygroundPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f8fb] text-slate-900">
-      <div className="mx-auto flex max-w-6xl gap-8 px-6 py-12 lg:px-0">
+    <div className="min-h-screen bg-[#f7f8fb] text-slate-900 pt-14 sm:pt-16">
+      <div className="mx-auto flex max-w-6xl gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 py-4 sm:py-8 lg:px-0 lg:py-12">
         <Sidebar
           sidebarOpen={sidebarOpen}
           onToggle={() => setSidebarOpen((prev) => !prev)}
         />
 
-        <main className="flex-1 space-y-8">
-          <div className="rounded-3xl bg-gradient-to-br from-[#e0c3fc] via-[#fbdcde] to-[#fefae0] p-8 text-slate-800 shadow">
+        <main className="flex-1 space-y-6 sm:space-y-8 min-w-0">
+          <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#e0c3fc] via-[#fbdcde] to-[#fefae0] p-6 sm:p-8 text-slate-800 shadow">
             <div>
-              <h1 className="text-4xl font-semibold">API Playground</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold">API Playground</h1>
               <p className="mt-2 text-sm text-slate-600">
                 Test your API key and explore the Research API
               </p>
             </div>
           </div>
 
-          <article className="rounded-3xl bg-white p-6 shadow-sm">
-            <header className="mb-6">
+          <article className="rounded-2xl sm:rounded-3xl bg-white p-4 sm:p-6 shadow-sm">
+            <header className="mb-4 sm:mb-6">
               <p className="text-sm font-semibold text-slate-500">Validate API Key</p>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 mt-1">
                 Enter your API key to validate and access protected content
               </p>
             </header>

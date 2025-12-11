@@ -13,7 +13,7 @@ function ProtectedContent() {
   const [isValid, setIsValid] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const key = searchParams.get("key");
@@ -64,24 +64,24 @@ function ProtectedContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f8fb] text-slate-900">
-      <div className="mx-auto flex max-w-6xl gap-8 px-6 py-12 lg:px-0">
+    <div className="min-h-screen bg-[#f7f8fb] text-slate-900 pt-14 sm:pt-16">
+      <div className="mx-auto flex max-w-6xl gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 py-4 sm:py-8 lg:px-0 lg:py-12">
         <Sidebar
           sidebarOpen={sidebarOpen}
           onToggle={() => setSidebarOpen((prev) => !prev)}
         />
 
-        <main className="flex-1 space-y-8">
-          <div className="rounded-3xl bg-gradient-to-br from-[#e0c3fc] via-[#fbdcde] to-[#fefae0] p-8 text-slate-800 shadow">
+        <main className="flex-1 space-y-6 sm:space-y-8 min-w-0">
+          <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#e0c3fc] via-[#fbdcde] to-[#fefae0] p-6 sm:p-8 text-slate-800 shadow">
             <div>
-              <h1 className="text-4xl font-semibold">Protected Page</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold">Protected Page</h1>
               <p className="mt-2 text-sm text-slate-600">
                 This page requires a valid API key to access
               </p>
             </div>
           </div>
 
-          <article className="rounded-3xl bg-white p-6 shadow-sm">
+          <article className="rounded-2xl sm:rounded-3xl bg-white p-4 sm:p-6 shadow-sm">
             {validating ? (
               <div className="text-center py-8">
                 <p className="text-sm text-slate-500">Validating API key...</p>
@@ -109,7 +109,7 @@ function ProtectedContent() {
                 </div>
                 <button
                   onClick={() => router.push("/playground")}
-                  className="rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition"
+                  className="w-full sm:w-auto rounded-xl sm:rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition"
                 >
                   Go to Playground
                 </button>
@@ -127,7 +127,7 @@ function ProtectedContent() {
 export default function ProtectedPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#f7f8fb] flex items-center justify-center">
+      <div className="min-h-screen bg-[#f7f8fb] flex items-center justify-center pt-14 sm:pt-16">
         <p className="text-slate-500">Loading...</p>
       </div>
     }>

@@ -17,42 +17,52 @@ export default function Sidebar({ sidebarOpen, onToggle }) {
   const pathname = usePathname();
 
   return (
-    <div className="relative">
-      {/* Hamburger button - always visible but positioned based on sidebar state */}
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`mt-2 inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-purple-300 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-600 hover:border-purple-400 hover:from-purple-100 hover:to-pink-100 hover:text-purple-700 shadow-md hover:shadow-lg transition-all duration-300 ease-out ${
-          sidebarOpen
-            ? "opacity-0 pointer-events-none scale-75"
-            : "opacity-100 pointer-events-auto scale-100"
-        }`}
-        aria-label="Show menu"
-      >
-        {/* Hamburger icon */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="h-4 w-4 transition-transform duration-300"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-        >
-          <path d="M4 7h16" />
-          <path d="M4 12h16" />
-          <path d="M4 17h16" />
-        </svg>
-      </button>
+    <>
+      {/* Mobile Backdrop */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300"
+          onClick={onToggle}
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Sidebar - always rendered but animated */}
-      <aside
-        className={`rounded-3xl bg-white/80 shadow-sm backdrop-blur transition-all duration-500 ease-out overflow-hidden ${
-          sidebarOpen
-            ? "w-60 opacity-100 translate-x-0 p-5"
-            : "w-0 opacity-0 -translate-x-4 p-0"
-        }`}
-      >
+      <div className="relative">
+        {/* Hamburger button - always visible but positioned based on sidebar state */}
+        <button
+          type="button"
+          onClick={onToggle}
+          className={`mt-2 inline-flex h-9 w-9 sm:h-8 sm:w-8 items-center justify-center rounded-full border-2 border-purple-300 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-600 hover:border-purple-400 hover:from-purple-100 hover:to-pink-100 hover:text-purple-700 shadow-md hover:shadow-lg transition-all duration-300 ease-out z-50 ${
+            sidebarOpen
+              ? "opacity-0 pointer-events-none scale-75"
+              : "opacity-100 pointer-events-auto scale-100"
+          }`}
+          aria-label="Show menu"
+        >
+          {/* Hamburger icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="h-4 w-4 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+          >
+            <path d="M4 7h16" />
+            <path d="M4 12h16" />
+            <path d="M4 17h16" />
+          </svg>
+        </button>
+
+        {/* Sidebar - always rendered but animated */}
+        <aside
+          className={`fixed md:relative top-0 left-0 md:top-auto md:left-auto h-full md:h-auto rounded-3xl md:rounded-3xl bg-white dark:bg-slate-900 shadow-lg md:shadow-sm backdrop-blur transition-all duration-500 ease-out overflow-hidden z-50 ${
+            sidebarOpen
+              ? "w-64 md:w-60 opacity-100 translate-x-0 md:translate-x-0 p-5"
+              : "w-0 opacity-0 -translate-x-full md:translate-x-0 md:opacity-0 p-0"
+          }`}
+        >
         {/* Sidebar content - only visible when open */}
         <div
           className={`transition-all duration-300 ease-out ${
@@ -151,5 +161,6 @@ export default function Sidebar({ sidebarOpen, onToggle }) {
         </div>
       </aside>
     </div>
+    </>
   );
 }
